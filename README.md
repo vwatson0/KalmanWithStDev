@@ -22,9 +22,9 @@ Update - At any new measurement update the Filtwer with:
 
 Outputs - To access the last state of the Filter:
 
-Current PM estimate of the time series value = KF.X[0]
-Current estimate of the slope followed by the time series = KF.X[1]
-Current estimated value of the standard deviation = KF.Sig[0]
+- Current PM estimate of the time series value = KF.X[0]
+- Current estimate of the slope followed by the time series = KF.X[1]
+- Current estimated value of the standard deviation = KF.Sig[0]
 
 These estimate necessitate some time for the filter to converge. When a change is detected or ordered between two stable values, wait for the slope KF.X[1] to increase and and then decrease so that the slope estimate is almost null. Then you can grab the estimate X[0] and Sig[0] as instant estimate of the time series statistics.
 
