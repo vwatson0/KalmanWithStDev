@@ -10,14 +10,18 @@ There is a second layer added to the filter to recursively estimate the standard
 Initialization - the object is created at the begining of the monitoring with:
 - import KalmanFilterStdEst as KFlib
 - KF = KFlib.KFobject(y0, cMeas)
+
   where y0 is the first measure and cMeas is a scalarused to build the covariance matrix of the measurements.
   the more noisy the data is the highest we need cMeas.
+  
   If you realize that the noise is not enough filtered -> increase cMeas 
+
   If you realize the filter takes for ever to get back on track after a transition -> decrease cMeas
 
 Update - At any new measurement update the Filtwer with:
 
 - KF.EstimateState(y[k], t[k] - t[k-1])
+
   where y[k] is the new measure taken at t = t[k] and t[k-1] is the time when the Kalman Filter got updated last
 
 Outputs - To access the last state of the Filter:
