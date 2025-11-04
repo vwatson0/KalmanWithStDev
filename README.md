@@ -8,7 +8,7 @@ The posterior mean (PM) estimate of the state gives the estimate of the beam cur
 There is a second layer added to the filter to recursively estimate the standard deviation of the time series using Bayesian statistics.
 
 Initialization - the object is created at the begining of the monitoring with:
-- import KalmanFilterStdEst as KFlib
+- import GenKFlib as KFlib
 - KF = KFlib.KFobject(y0, cMeas)
 
   where y0 is the first measure and cMeas is a scalarused to build the covariance matrix of the measurements.
