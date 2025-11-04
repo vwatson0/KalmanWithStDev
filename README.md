@@ -9,7 +9,7 @@ There is a second layer added to the filter to recursively estimate the standard
 
 Initialization - the object is created at the begining of the monitoring with:
 - import GenKFlib as KFlib
-- KF = KFlib.KFobject(y0, cMeas)
+- KF = KFlib.KFobject(y0, cMeas) !!!! y nust be array type even in 1D
 
   where y0 is the first measure and cMeas is a scalarused to build the covariance matrix of the measurements.
   the more noisy the data is the highest we need cMeas.
