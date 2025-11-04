@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pylab as plt
-import KalmanFilterStdEst as KFlib
+#import KalmanFilterStdEst as KFlib
+import GenKFlib as KFlib
+
+'''Test function for the 1D Kalman filter used to track the ecris beam current and determine when the system is settled'''
 
 # tuning test function parameters
 Amp = .0001 # amplitude of the arctangent -> depth of the transition
@@ -10,13 +13,11 @@ stretch = .5 # violence of the transition
 # tuning the Kalman filter
 cMeas = 1E+1 # covariance of measure -> the highest the more filter the lowest the more reactive to trajectory changes
 
-
-
 t = np.linspace(0, 60, 250) # time vector
 x = np.arctan(stretch * (t-30)) * Amp # real value
 y = x + np.random.randn(len(x)) * sigNoise # measure
 
-KF = KFlib.KFobject(y[0], cMeas) # Initialization of the Kalman Filter object
+KF = KFlib.KFobject(np.atleast_1d(y[0]), cMeas) # Initialization of the Kalman Filter object
 
 Xest = np.zeros(len(x)) # for storage Estimated Value
 Xest[0] = y[0]
@@ -25,7 +26,7 @@ StdEst =  np.zeros(len(x)) # for storage estimated noise standard deviation
 
 for k in range(len(y)-1): # going through the time series as if we were measuring live
 
-    KF.EstimateState(y[k+1], t[k+1] - t[k]) # updating the KF with last measure
+    KF.EstimateState(np.atleast_1d(y[k+1]), t[k+1] - t[k]) # updating the KF with last measure
 
     # storing values before they get replaced at the next estimate
     Xest[k+1] = KF.X[0]
